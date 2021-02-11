@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheet.css" type="text/css" media="screen" />
+    <script src="./MoveableObject/MoveableObject.js"></script>
+    <script src="./Particle/Particle.js"></script>
+    <script src="./Main/Main.js"></script>
+    <script src="./GenerateContent/generateContent.js"></script>
+    <script src="./Vector/Vector.js"></script>
+
+    <title>Feuerwerk</title>
+</head>
+
+<body>
+    <canvas width="1280" height="720"></canvas>
+
+    <form id="userConfiguration" method="GET">
+
+        <fieldset>
+            <legend> PARTIKEL ANZAHL </legend>
+            <input type="range" name="particleAmount" min="1" max="50" step="1" value="10" id="particleAmount" />
+        </fieldset>
+
+        <fieldset>
+            <legend> FEUERWERK GRÖSSE </legend>
+            <input type="range" name="particleSize" min="40" max="100" step="1" value="1" id="particleSize" />
+        </fieldset>
+
+        <fieldset>
+            <legend> FEUERWERK LEUCHTDAUER </legend>
+            <input type="range" name="particleLifetime" min="1" max="5" step="0.5" value="2.5" id="particleLifetime" />
+        </fieldset>
+
+        <fieldset>
+            <legend> PARTIKEL FORM </legend>
+            <input type="radio" name="particleShape" value="dot" id="radio1" checked="checked" />
+            <label for="radio1">Kreis</label>
+            <input type="radio" name="particleShape" value="triangle" id="radio2" />
+            <label for="radio2">Dreieck</label>
+            <input type="radio" name="particleShape" value="square" id="radio3" />
+            <label for="radio3">Quadrat</label>
+            <input type="radio" name="particleShape" value="gme" id="radio4" />
+            <label for="radio4">$GME GOES BRRR</label>
+        </fieldset>
+
+        <fieldset>
+            <legend> PARTIKEL FARBE </legend>
+            <input type="color" name="particleColor" id="particleColor" value="#FFFFFF">
+        </fieldset>
+
+        <fieldset>
+            <legend> LEUCHT FARBE </legend>
+            <input type="color" name="glowColor" id="glowColor" value="#8AFFE2">
+        </fieldset>
+    </form>
+
+    <div>
+        <fieldset>
+            <legend> FEUERWERK SPEICHERN </legend>
+            <input id="fireworkSave" type="text" placeholder="RAKETE BENNEN" required />
+            <button type="button" id="fireworkSaveButton" form="userConfiguration">RAKETE SPEICHERN</button>
+        </fieldset>
+
+        <fieldset id="fireworkLoad">
+            <legend>Rakete Laden</legend>
+            <button type="button" id="fireworkLoadButton">Laden</button>
+        </fieldset>
+    </div>
+
+</body>
+<img id="fireworkrockets" src="./images/gme_moon.png" alt="fireworkrockets" width="150">
+
+</html>
