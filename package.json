@@ -1,0 +1,22 @@
+{
+  "name": "eia2-endabgabe-sh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node Server/Server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebifyy/EIA2_Endabgabe-SebastianHoffmann.git"
+  },
+  "author": "Sebastian Hoffmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebifyy/EIA2_Endabgabe-SebastianHoffmann/issues"
+  },
+  "homepage": "https://github.com/sebifyy/EIA2_Endabgabe-SebastianHoffmann#readme",
+  "dependencies": {
+    "@types/node": "^14.14.26"
+  }
+}
