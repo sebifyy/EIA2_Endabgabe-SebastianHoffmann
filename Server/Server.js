@@ -7,8 +7,7 @@ const Mongo = require("mongodb");
 var Firework;
 (function (Firework) {
     let fireworkCollection;
-    //let databaseUrl: string = "mongodb+srv://DerPapa:asdfyxcv@eia2-2020-2021-endabgab.a47ra.mongodb.net/EIA2-2020-2021-Endabgabe?retryWrites=true&w=majority";
-    let databaseUrl = "mongodb+srv://sebify:dnS28T59e9KVADSM@eia2-endabgabe-sebastia.21tky.mongodb.net/EIA2-Endabgabe-SebastianHoffmann?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://sebify:c2pQPPFXprZdUHCK@eia2-endabgabe-sebastia.21tky.mongodb.net/EIA2-Endabgabe-SebastianHoffmann?retryWrites=true&w=majority";
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
@@ -21,7 +20,7 @@ var Firework;
         server.addListener("request", handleRequest);
     }
     async function connectToDatabase(_url) {
-        let options = { useNewUrlParser: true, useUnifiedTopology: true }; //mit diesen options eine Verbindung zur DB aufbauen
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         fireworkCollection = mongoClient.db("Firework").collection("Rockets");
@@ -32,7 +31,7 @@ var Firework;
         _response.setHeader("content-type", "text/html; charset=utf-8");
         _response.setHeader("Access-Control-Allow-Origin", "*");
         if (_request.url) {
-            let url = Url.parse(_request.url, true); // der Url.parser wandelt den UrlWithParsedQuery in ein anders Format um. Durch true wird daraus ein besser lesbares assoziatives Array. 
+            let url = Url.parse(_request.url, true);
             let command = url.query["command"];
             console.log("Der URL", _request.url);
             if (command === "getTitels") {
@@ -58,28 +57,19 @@ var Firework;
         let arrayResult = await result.toArray();
         let listOfTitels = JSON.stringify(arrayResult);
         console.log(listOfTitels);
-        _response.write(listOfTitels); //Übergabe der Daten an den client
+        _response.write(listOfTitels);
         _response.end();
     }
     async function getAllDatas(_request, _response) {
         let result = fireworkCollection.find();
         let arrayResult = await result.toArray();
         let jsonResult = JSON.stringify(arrayResult);
-        // console.log(jsonResult);
-        _response.write(jsonResult); //Übergabe der Daten an den client
+        _response.write(jsonResult);
         _response.end();
     }
     function storeRocket(_userRocket, _response) {
         fireworkCollection.insertOne(_userRocket);
         _response.end();
     }
-    // async function getTitels(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
-    //     let result: Mongo.Cursor<any> = fireworkCollection.find({}, { projection: { _id: 0, fireworkName: 1 } });
-    //     let arrayResult: string[] = await result.toArray();
-    //     let jsonResult: string = JSON.stringify(arrayResult);
-    //     console.log(jsonResult);
-    //     _response.write(jsonResult); //Übergabe der Daten an den client
-    //     _response.end();
-    // }
 })(Firework = exports.Firework || (exports.Firework = {}));
 //# sourceMappingURL=Server.js.map
