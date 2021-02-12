@@ -77,7 +77,6 @@ var Firework;
         console.log(result);
         createUserRocket(result);
     }
-    Firework.getDataFromServer = getDataFromServer;
     function createUserRocket(_result) {
         let color = _result?.particleColor;
         let particleLifetime = _result?.particleLifetime;

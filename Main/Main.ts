@@ -73,7 +73,7 @@ namespace Firework {
     console.log(type);
   }
 
-  export async function getDataFromServer(_event: Event): Promise<void> {
+  async function getDataFromServer(_event: Event): Promise<void> {
     console.log("---DATA LOADED FROM SERVER---");
     let target: HTMLInputElement = <HTMLInputElement>_event.target;
     let userValue: string;
