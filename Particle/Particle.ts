@@ -1,6 +1,6 @@
 namespace Firework {
     let imageGME: HTMLImageElement = new Image();
-    imageGME.src = "EIA2_Endabgabe-SebastianHoffmann/images/gme_moon.png";
+    imageGME.src = "images/gme_moon.png";
 
     let audioGME: HTMLAudioElement = new Audio();
     audioGME.src = "audio/wsb_discord.mp3";
