@@ -2,9 +2,9 @@
 var Firework;
 (function (Firework) {
     let imageGME = new Image();
-    imageGME.src = "./EIA2_Endabgabe-SebastianHoffmann/images/gme_moon.png";
+    imageGME.src = "./images/gme_moon.png";
     let audioGME = new Audio();
-    audioGME.src = "./EIA2_Endabgabe-SebastianHoffmann/audio/wsb_discord.mp3";
+    audioGME.src = "./audio/wsb_discord.mp3";
     class Particle extends Firework.MoveableObject {
         constructor(_size, _position, _velocity, _color, _glowColor, _lifetime, _type) {
             super(_position);
