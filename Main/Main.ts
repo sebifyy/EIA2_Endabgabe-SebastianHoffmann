@@ -1,8 +1,8 @@
 namespace Firework {
   window.addEventListener("load", handleLoad);
   //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/";
-  let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/";
-  //let serverPage: string = "http://localhost:5001/";
+  //let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/";
+  let serverPage: string = "http://localhost:5001/";
   let form: HTMLFormElement;
   let particleAmount: number;
   let particleSize: number;
@@ -31,17 +31,21 @@ namespace Firework {
 
     let fireworkSaveButton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#fireworkSaveButton");
     let inputParticleAmount: HTMLButtonElement = <HTMLButtonElement>document.querySelector("input#particleAmount");
+    let fireworkLoadButton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#fireworkLoadButton");
+
     form = <HTMLFormElement>document.querySelector("form#userConfiguration");
     canvas.addEventListener("mouseup", createObject);
     fireworkSaveButton.addEventListener("click", sendDataToServer);
     inputParticleAmount.addEventListener("change", startMeter);
+    fireworkLoadButton.addEventListener("click", getDataFromServer);
+
     window.setInterval(update, 20);
     backgroundImage.src = "./images/wsb_logo_bearbeitet.png";
   }
 
   function createObject(_event: MouseEvent): void {
-    let mousePositionX: number = _event.clientX; 
-    let mousepositionY: number = _event.clientY;
+    let mousePositionX: number = _event.clientX - crc2.canvas.offsetLeft;
+    let mousepositionY: number = _event.clientY - crc2.canvas.offsetTop;
     let formData: FormData = new FormData(document.forms[0]);
 
     for (let entry of formData) {
@@ -77,6 +81,7 @@ namespace Firework {
     let response: Response = await fetch(serverPage + "?" + "command=getAllDatas");
     let responseContent: string = await response.text();
     let allDatas: Rocket[] = JSON.parse(responseContent);
+    console.log(allDatas);
     let result: Rocket | undefined = allDatas.find(item => item.fireworkName === userValue);
     console.log(result);
     createUserRocket(result);
@@ -95,7 +100,8 @@ namespace Firework {
     let fireworkName: string;
     fireworkName = fireworkSave.value;
     let query: URLSearchParams = new URLSearchParams(<any>userConfigurationData);
-    query.append("fireworkName", fireworkName);
+    console.log(fireworkName);
+    //query.append("fireworkName", fireworkName);
     let response: Response = await fetch(serverPage + "?" + query.toString());
     let responseText: string = await response.text();
     alert("Deine Daten wurden gespeichert");
@@ -127,7 +133,7 @@ namespace Firework {
   }
 
   function deleteExpandables(): void {
-    for (let index: number = moveables.length - 1; index >= 0; index--) {
+    for (let index: number = 0; index <= moveables.length - 1; index++) {
       if (moveables[index].expendable)
         moveables.splice(index, 1);
     }
