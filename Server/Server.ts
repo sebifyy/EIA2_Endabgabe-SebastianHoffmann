@@ -6,7 +6,7 @@ export namespace Firework {
     export interface Rocket {
         [type: string]: string | string[] | undefined;
     }
-
+    
     let fireworkCollection: Mongo.Collection;
     //let databaseUrl: string = "mongodb+srv://DerPapa:asdfyxcv@eia2-2020-2021-endabgab.a47ra.mongodb.net/EIA2-2020-2021-Endabgabe?retryWrites=true&w=majority";
     let databaseUrl: string = "mongodb+srv://sebify:dnS28T59e9KVADSM@eia2-endabgabe-sebastia.21tky.mongodb.net/EIA2-Endabgabe-SebastianHoffmann?retryWrites=true&w=majority";
