@@ -2,7 +2,7 @@
 var Firework;
 (function (Firework) {
     let imageGME = new Image();
-    imageGME.src = "images/gme_moon.png";
+    imageGME.src = "EIA2_Endabgabe-SebastianHoffmann/images/gme_moon.png";
     let audioGME = new Audio();
     audioGME.src = "audio/wsb_discord.mp3";
     class Particle extends Firework.MoveableObject {
