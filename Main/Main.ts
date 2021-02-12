@@ -92,11 +92,19 @@ namespace Firework {
     let type: string | undefined = _result?.particleShape;
     console.log(color, particleLifetime, type);
 
-    let forms = document.querySelectorAll("userConfiguration");
-    let formElements = forms[0];
+    let form: HTMLCollectionOf<HTMLFormElement> = document.getElementsByTagName("form");
+    for (let i: number = 0; i < form[0].elements.length; i++) {
+        if (form[0].elements[i].id == "particleColor") {
+            let particleColor: HTMLInputElement = <HTMLInputElement>document.getElementById("particleColor");
+            particleColor.value = <string>color;
+        }
+        if (form[0].elements[i].id == "particleLifeTime") {
+          let particleColor: HTMLInputElement = <HTMLInputElement>document.getElementById("particleColor");
+          particleColor.value = <string>color;
+      }
+    }
+    
 
-    console.log(formElements);
-  
   }
 
   async function sendDataToServer(_event: Event): Promise<void> {

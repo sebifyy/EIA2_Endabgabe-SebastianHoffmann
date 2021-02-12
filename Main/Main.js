@@ -81,9 +81,17 @@ var Firework;
         let particleLifetime = _result?.particleLifetime;
         let type = _result?.particleShape;
         console.log(color, particleLifetime, type);
-        let forms = document.querySelectorAll("userConfiguration");
-        let formElements = forms[0];
-        console.log(formElements);
+        let form = document.getElementsByTagName("form");
+        for (let i = 0; i < form[0].elements.length; i++) {
+            if (form[0].elements[i].id == "particleColor") {
+                let particleColor = document.getElementById("particleColor");
+                particleColor.value = color;
+            }
+            if (form[0].elements[i].id == "particleLifeTime") {
+                let particleColor = document.getElementById("particleColor");
+                particleColor.value = color;
+            }
+        }
     }
     async function sendDataToServer(_event) {
         let userConfigurationData = new FormData(form);
