@@ -75,13 +75,12 @@ namespace Firework {
 
   async function getDataFromServer(_event: Event): Promise<void> {
     console.log("---DATA LOADED FROM SERVER---");
-    let target: HTMLInputElement = <HTMLInputElement>_event.target;
+    let target: HTMLInputElement = <HTMLInputElement>document.getElementById("LoadedTitels");
     let userValue: string;
     userValue = target.value;
     let response: Response = await fetch(serverPage + "?" + "command=getAllDatas");
     let responseContent: string = await response.text();
     let allDatas: Rocket[] = JSON.parse(responseContent);
-    console.log(allDatas);
     let result: Rocket | undefined = allDatas.find(item => item.fireworkName === userValue);
     console.log(result);
     createUserRocket(result);
@@ -92,6 +91,12 @@ namespace Firework {
     let particleLifetime: number | undefined = _result?.particleLifetime;
     let type: string | undefined = _result?.particleShape;
     console.log(color, particleLifetime, type);
+
+    let forms = document.querySelectorAll("userConfiguration");
+    let formElements = forms[0];
+
+    console.log(formElements);
+  
   }
 
   async function sendDataToServer(_event: Event): Promise<void> {

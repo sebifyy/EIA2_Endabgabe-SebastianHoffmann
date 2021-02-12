@@ -17,6 +17,7 @@ namespace Firework {
     function createSelect(_titelList: Rocket[]): HTMLElement | null {
         let selection: HTMLSelectElement = document.createElement("select");
         selection.name = "LoadedTitels";
+        selection.id = "LoadedTitels";
         // selection.addEventListener("change", getDataFromServer);
 
         for (let titel of _titelList) {

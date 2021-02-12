@@ -66,13 +66,12 @@ var Firework;
     }
     async function getDataFromServer(_event) {
         console.log("---DATA LOADED FROM SERVER---");
-        let target = _event.target;
+        let target = document.getElementById("LoadedTitels");
         let userValue;
         userValue = target.value;
         let response = await fetch(serverPage + "?" + "command=getAllDatas");
         let responseContent = await response.text();
         let allDatas = JSON.parse(responseContent);
-        console.log(allDatas);
         let result = allDatas.find(item => item.fireworkName === userValue);
         console.log(result);
         createUserRocket(result);
@@ -82,6 +81,9 @@ var Firework;
         let particleLifetime = _result?.particleLifetime;
         let type = _result?.particleShape;
         console.log(color, particleLifetime, type);
+        let forms = document.querySelectorAll("userConfiguration");
+        let formElements = forms[0];
+        console.log(formElements);
     }
     async function sendDataToServer(_event) {
         let userConfigurationData = new FormData(form);
