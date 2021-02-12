@@ -1,9 +1,9 @@
 namespace Firework {
     let imageGME: HTMLImageElement = new Image();
-    imageGME.src = "./images/gme_moon.png";
+    imageGME.src = "./EIA2_Endabgabe-SebastianHoffmann/images/gme_moon.png";
 
     let audioGME: HTMLAudioElement = new Audio();
-    audioGME.src = "./audio/wsb_discord.mp3";
+    audioGME.src = "./EIA2_Endabgabe-SebastianHoffmann/audio/wsb_discord.mp3";
 
     export class Particle extends MoveableObject {
         private static gravity: number = 1;
