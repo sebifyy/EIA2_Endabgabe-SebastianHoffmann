@@ -1,7 +1,7 @@
 namespace Firework {
   window.addEventListener("load", handleLoad);
-  //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/";
-  let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/"; //HEROKULINK
+  let serverPage: string = "https://eia2-2020-2021.herokuapp.com/";
+  //let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/"; //HEROKULINK
   //let serverPage: string = "http://localhost:5001/";
   let form: HTMLFormElement;
   let particleAmount: number;
@@ -106,8 +106,6 @@ namespace Firework {
           particleColor.value = <string>color;
       }
     }
-    
-
   }
 
   async function sendDataToServer(_event: Event): Promise<void> {
@@ -131,7 +129,7 @@ namespace Firework {
 
     for (let i: number = 0; i < _particleAmount; i++) {
       let radian: number = (Math.PI * 2) / _particleAmount;
-      let px: number = Math.cos(radian * i) * 110 * Math.random() * 2;
+      let px: number = Math.cos(radian * i) * 110 * Math.random() * 2; 
       let py: number = Math.sin(radian * i) * 110 * Math.random() * 2;
       let velocity: Vector = new Vector(px, py);
       let particle: MoveableObject = new Particle(particleSize, origin, velocity, color, glowColor, particleLifetime, type);
