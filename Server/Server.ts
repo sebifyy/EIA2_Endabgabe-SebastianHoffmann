@@ -9,7 +9,7 @@ export namespace Firework {
     }
 
     let fireworkCollection: Mongo.Collection;
-    let databaseUrl: string = "mongodb+srv://sebify:c2pQPPFXprZdUHCK@eia2-endabgabe-sebastia.21tky.mongodb.net/EIA2-Endabgabe-SebastianHoffmann?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://sebify:8ZtzL76aVbZ6MYT7@cluster0.21tky.mongodb.net/Feuerwerk?retryWrites=true&w=majority";
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;

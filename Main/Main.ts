@@ -1,8 +1,8 @@
 namespace Firework {
   window.addEventListener("load", handleLoad);
   //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; JOHANNES ERVER; FUNKTIONIERT
-  let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/"; //EIGENER HEROKULINK - FUNKTIONIERT NICHT
-  //let serverPage: string = "http://localhost:5001/"; //FUNKTIONIERT
+  //let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/"; //EIGENER HEROKULINK - FUNKTIONIERT NICHT
+  let serverPage: string = "http://localhost:5001/"; //FUNKTIONIERT
   let form: HTMLFormElement;
   let particleAmount: number;
   let particleSize: number;
@@ -102,8 +102,8 @@ namespace Firework {
             particleColor.value = <string>color;
         }
         if (form[0].elements[i].id == "particleLifeTime") {
-          let particleColor: HTMLInputElement = <HTMLInputElement>document.getElementById("particleColor");
-          particleColor.value = <string>color;
+          let particleLifeTime: HTMLInputElement = <HTMLInputElement>document.getElementById("particleLifeTime");
+          particleLifeTime.value = <any>particleLifetime;   
       }
     }
   }
