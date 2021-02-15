@@ -2,21 +2,21 @@
 var Firework;
 (function (Firework) {
     window.addEventListener("load", handleLoad);
-    //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; JOHANNES ERVER; FUNKTIONIERT
-    //let serverPage: string = "https://eia2-endabgabe-sh.herokuapp.com/"; //EIGENER HEROKULINK - FUNKTIONIERT NICHT
-    let serverPage = "http://localhost:5001/"; //FUNKTIONIERT
+    // let serverPage: string = "http://localhost:5001";
+    //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; JOHANNES SERVER
+    let serverPage = "eia2-endabgabe-sh.herokuapp.com/";
     let form;
-    let particleAmount;
+    let particleQuantity;
     let particleSize;
     let color;
-    let glowColor;
     let particleLifetime;
+    let glowColor;
     let type;
     let moveables = [];
     let canvas;
     let backgroundImage = new Image();
     async function handleLoad(_event) {
-        console.log("---PAGE LOADED---");
+        console.log("Moin");
         let response = await fetch(serverPage + "?" + "command=getTitels");
         let listOfTitels = await response.text();
         let titelList = JSON.parse(listOfTitels);
@@ -26,12 +26,12 @@ var Firework;
             return;
         Firework.crc2 = canvas.getContext("2d");
         let fireworkSaveButton = document.querySelector("button#fireworkSaveButton");
-        let inputParticleAmount = document.querySelector("input#particleAmount");
+        let inputParticleQuantity = document.querySelector("input#particleQuantity");
         let fireworkLoadButton = document.querySelector("button#fireworkLoadButton");
         form = document.querySelector("form#userConfiguration");
         canvas.addEventListener("mouseup", createObject);
         fireworkSaveButton.addEventListener("click", sendDataToServer);
-        inputParticleAmount.addEventListener("change", startMeter);
+        inputParticleQuantity.addEventListener("change", startMeter);
         fireworkLoadButton.addEventListener("click", getDataFromServer);
         window.setInterval(update, 20);
         backgroundImage.src = "./images/wsb_logo_bearbeitet.png";
@@ -41,14 +41,14 @@ var Firework;
         let mousepositionY = _event.clientY - Firework.crc2.canvas.offsetTop;
         let formData = new FormData(document.forms[0]);
         for (let entry of formData) {
-            particleAmount = Number(formData.get("particleAmount"));
+            particleQuantity = Number(formData.get("particleQuantity"));
             particleSize = Number(formData.get("particleSize"));
             particleLifetime = Number(formData.get("particleLifetime"));
             color = String(formData.get("particleColor"));
             glowColor = String(formData.get("glowColor"));
             switch (entry[1]) {
-                case "dot":
-                    type = "dot";
+                case "circle":
+                    type = "circle";
                     break;
                 case "triangle":
                     type = "triangle";
@@ -59,17 +59,14 @@ var Firework;
                 case "gme":
                     type = "gme";
                     break;
-                default:
-                    console.log("Nichts im case");
-                    break;
             }
         }
-        createParticle(particleAmount, particleSize, mousePositionX, mousepositionY, color, glowColor, particleLifetime, type);
+        createParticle(particleQuantity, particleSize, mousePositionX, mousepositionY, color, glowColor, particleLifetime, type);
         console.log(type);
     }
     async function getDataFromServer(_event) {
-        console.log("---DATA LOADED FROM SERVER---");
-        let target = document.getElementById("LoadedTitels");
+        console.log("Datein wurden geladen");
+        let target = document.getElementById("LodedTitels");
         let userValue;
         userValue = target.value;
         let response = await fetch(serverPage + "?" + "command=getAllDatas");
@@ -79,6 +76,7 @@ var Firework;
         console.log(result);
         createUserRocket(result);
     }
+    Firework.getDataFromServer = getDataFromServer;
     function createUserRocket(_result) {
         let color = _result?.particleColor;
         let particleLifetime = _result?.particleLifetime;
@@ -86,13 +84,29 @@ var Firework;
         console.log(color, particleLifetime, type);
         let form = document.getElementsByTagName("form");
         for (let i = 0; i < form[0].elements.length; i++) {
+            if (form[0].elements[i].id == "particleQuantity") {
+                let particleQuantity = document.getElementById("particleQuantity");
+                particleQuantity.value = color;
+            }
+            if (form[0].elements[i].id == "particleSize") {
+                let particleSize = document.getElementById("particleSize");
+                particleSize.value = color;
+            }
+            if (form[0].elements[i].id == "particleLifetime") {
+                let particleLifetime = document.getElementById("particleLifetime");
+                particleLifetime.value = color;
+            }
+            if (form[0].elements[i].id == "particleShape") {
+                let particleShape = document.getElementById("particleShape");
+                particleShape.value = color;
+            }
             if (form[0].elements[i].id == "particleColor") {
                 let particleColor = document.getElementById("particleColor");
                 particleColor.value = color;
             }
-            if (form[0].elements[i].id == "particleLifeTime") {
-                let particleLifeTime = document.getElementById("particleLifeTime");
-                particleLifeTime.value = particleLifetime;
+            if (form[0].elements[i].id == "glowColor") {
+                let glowColor = document.getElementById("glowColor");
+                glowColor.value = color;
             }
         }
     }
@@ -103,18 +117,18 @@ var Firework;
         fireworkName = fireworkSave.value;
         let query = new URLSearchParams(userConfigurationData);
         console.log(fireworkName);
-        //query.append("fireworkName", fireworkName);
+        // query.append("fireworkName", fireworkName);
         let response = await fetch(serverPage + "?" + query.toString());
         let responseText = await response.text();
         alert("Deine Daten wurden gespeichert");
         console.log("Daten geschickt: ", responseText);
         fireworkSave.value = "";
     }
-    function createParticle(_particleAmount, _particleSize, _mousePositionX, _mousePositionY, _color, _glowColor, _lifetime, _type) {
+    function createParticle(_particleQuantity, _particleSize, _mousePositionX, _mousePositionY, _color, _glowColor, _particleLifetime, _type) {
         let origin = new Firework.Vector(_mousePositionX, _mousePositionY);
         let color = _color;
-        for (let i = 0; i < _particleAmount; i++) {
-            let radian = (Math.PI * 2) / _particleAmount;
+        for (let i = 0; i < _particleQuantity; i++) {
+            let radian = (Math.PI * 2) / _particleQuantity;
             let px = Math.cos(radian * i) * 110 * Math.random() * 2;
             let py = Math.sin(radian * i) * 110 * Math.random() * 2;
             let velocity = new Firework.Vector(px, py);
