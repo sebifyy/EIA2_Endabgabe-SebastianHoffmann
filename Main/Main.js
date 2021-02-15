@@ -16,7 +16,7 @@ var Firework;
     let canvas;
     let backgroundImage = new Image();
     async function handleLoad(_event) {
-        console.log("Moin");
+        console.log("SEITE GELADEN, TO THE MOON!");
         let response = await fetch(serverPage + "?" + "command=getTitels");
         let listOfTitels = await response.text();
         let titelList = JSON.parse(listOfTitels);
@@ -26,12 +26,11 @@ var Firework;
             return;
         Firework.crc2 = canvas.getContext("2d");
         let fireworkSaveButton = document.querySelector("button#fireworkSaveButton");
-        let inputParticleQuantity = document.querySelector("input#particleQuantity");
+        //let inputParticleQuantity: HTMLButtonElement = <HTMLButtonElement>document.querySelector("input#particleQuantity");
         let fireworkLoadButton = document.querySelector("button#fireworkLoadButton");
         form = document.querySelector("form#userConfiguration");
         canvas.addEventListener("mouseup", createObject);
         fireworkSaveButton.addEventListener("click", sendDataToServer);
-        inputParticleQuantity.addEventListener("change", startMeter);
         fireworkLoadButton.addEventListener("click", getDataFromServer);
         window.setInterval(update, 20);
         backgroundImage.src = "./images/wsb_logo_bearbeitet.png";
@@ -149,11 +148,6 @@ var Firework;
             if (moveables[index].expendable)
                 moveables.splice(index, 1);
         }
-    }
-    function startMeter(_event) {
-        let target = _event.target;
-        let meter = document.querySelector("meter");
-        meter.value = parseFloat(target.value);
     }
 })(Firework || (Firework = {}));
 //# sourceMappingURL=Main.js.map
