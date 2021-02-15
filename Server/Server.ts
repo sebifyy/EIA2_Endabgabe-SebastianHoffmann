@@ -64,7 +64,7 @@ export namespace Firework {
 
     async function getTitels(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
-        let result: Mongo.Cursor<any> = fireworkCollection.find({}, { projection: { _id: 0, fireworkName: 1 } });
+        let result: Mongo.Cursor<any> = Feuerwerk.find({}, { projection: { _id: 0, fireworkName: 1 } });
         let arrayResult: string[] = await result.toArray();
         let listOfTitels: string = JSON.stringify(arrayResult);
         console.log(listOfTitels);
@@ -75,7 +75,7 @@ export namespace Firework {
 
     async function getAllDatas(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
-        let result: Mongo.Cursor<any> = fireworkCollection.find();
+        let result: Mongo.Cursor<any> = Feuerwerk.find();
       
         let arrayResult: string[] = await result.toArray();
         let jsonResult: string = JSON.stringify(arrayResult);
@@ -84,7 +84,7 @@ export namespace Firework {
     }
 
     function storeRocket(_userRocket: Rocket, _response: Http.ServerResponse): void {
-        fireworkCollection.insertOne(_userRocket);
+        Feuerwerk.insertOne(_userRocket);
         _response.end();
     }
 }
