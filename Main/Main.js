@@ -10,7 +10,7 @@ var Firework;
     let particleSize;
     let color;
     let particleLifetime;
-    let glowColor;
+    let luminance;
     let type;
     let moveables = [];
     let canvas;
@@ -45,7 +45,7 @@ var Firework;
             particleSize = Number(formData.get("particleSize"));
             particleLifetime = Number(formData.get("particleLifetime"));
             color = String(formData.get("particleColor"));
-            glowColor = String(formData.get("glowColor"));
+            luminance = String(formData.get("luminance"));
             switch (entry[1]) {
                 case "circle":
                     type = "circle";
@@ -61,7 +61,7 @@ var Firework;
                     break;
             }
         }
-        createParticle(particleQuantity, particleSize, mousePositionX, mousepositionY, color, glowColor, particleLifetime, type);
+        createParticle(particleQuantity, particleSize, mousePositionX, mousepositionY, color, luminance, particleLifetime, type);
         console.log(type);
     }
     async function getDataFromServer(_event) {
@@ -104,9 +104,9 @@ var Firework;
                 let particleColor = document.getElementById("particleColor");
                 particleColor.value = color;
             }
-            if (form[0].elements[i].id == "glowColor") {
-                let glowColor = document.getElementById("glowColor");
-                glowColor.value = color;
+            if (form[0].elements[i].id == "luminance") {
+                let luminance = document.getElementById("luminance");
+                luminance.value = color;
             }
         }
     }
@@ -132,7 +132,7 @@ var Firework;
             let px = Math.cos(radian * i) * 110 * Math.random() * 2;
             let py = Math.sin(radian * i) * 110 * Math.random() * 2;
             let velocity = new Firework.Vector(px, py);
-            let particle = new Firework.Particle(particleSize, origin, velocity, color, glowColor, particleLifetime, type);
+            let particle = new Firework.Particle(particleSize, origin, velocity, color, luminance, particleLifetime, type);
             moveables.push(particle);
         }
     }

@@ -25,7 +25,6 @@ namespace Firework {
 
         public  copy(): Vector {
             return new Vector(this.x, this.y);
-
         }
     }
 }
