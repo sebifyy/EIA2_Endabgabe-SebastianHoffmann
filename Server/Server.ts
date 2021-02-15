@@ -8,7 +8,7 @@ export namespace Firework {
         [type: string]: string | string[] | undefined;
     }
 
-    let fireworkCollection: Mongo.Collection;
+    let Feuerwerk: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://sebify:8ZtzL76aVbZ6MYT7@cluster0.21tky.mongodb.net/Feuerwerk?retryWrites=true&w=majority";
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
@@ -27,8 +27,8 @@ export namespace Firework {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        fireworkCollection = mongoClient.db("Firework").collection("Rockets");
-        console.log("Database connection", fireworkCollection != undefined);
+        Feuerwerk = mongoClient.db("Feuerwerk").collection("Raketen");
+        console.log("Database connection", Feuerwerk != undefined);
     }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
