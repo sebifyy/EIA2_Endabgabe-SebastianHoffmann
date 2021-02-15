@@ -79,22 +79,6 @@ namespace Firework {
                     crc2.restore();
                     console.log(this.type);
                     break;
-                case "square":
-                    crc2.save();
-                    crc2.beginPath();
-                    crc2.translate(this.position.x, this.position.y);
-                    crc2.scale(0.1 * this.particleSize, 0.1 * this.particleSize);
-                    crc2.setLineDash([5, 5]);
-                    crc2.moveTo(0, 200);
-                    crc2.lineTo(200, 0);
-                    crc2.closePath();
-                    crc2.fillStyle = this.color;
-                    crc2.shadowColor = this.luminance;
-                    crc2.shadowBlur = 15 * this.particleSize / 100 + Math.random() * 150;
-                    crc2.fill();
-                    crc2.restore();
-                    console.log(this.type);
-                    break;
                 case "gme":
                     crc2.save();
                     crc2.translate(this.position.x, this.position.y);

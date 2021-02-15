@@ -67,22 +67,6 @@ var Firework;
                     Firework.crc2.restore();
                     console.log(this.type);
                     break;
-                case "square":
-                    Firework.crc2.save();
-                    Firework.crc2.beginPath();
-                    Firework.crc2.translate(this.position.x, this.position.y);
-                    Firework.crc2.scale(0.1 * this.particleSize, 0.1 * this.particleSize);
-                    Firework.crc2.setLineDash([5, 5]);
-                    Firework.crc2.moveTo(0, 200);
-                    Firework.crc2.lineTo(200, 0);
-                    Firework.crc2.closePath();
-                    Firework.crc2.fillStyle = this.color;
-                    Firework.crc2.shadowColor = this.luminance;
-                    Firework.crc2.shadowBlur = 15 * this.particleSize / 100 + Math.random() * 150;
-                    Firework.crc2.fill();
-                    Firework.crc2.restore();
-                    console.log(this.type);
-                    break;
                 case "gme":
                     Firework.crc2.save();
                     Firework.crc2.translate(this.position.x, this.position.y);
