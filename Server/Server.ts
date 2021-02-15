@@ -8,8 +8,8 @@ export namespace Firework {
         [type: string]: string | string[] | undefined;
     }
 
-    let Feuerwerk: Mongo.Collection;
-    let databaseUrl: string = "mongodb+srv://sebify:8ZtzL76aVbZ6MYT7@cluster0.21tky.mongodb.net/Feuerwerk?retryWrites=true&w=majority";
+    let fireworkCollection: Mongo.Collection;
+    let databaseUrl: string = "mongodb+srv://DerPapa:asdfyxcv@eia2-2020-2021-endabgab.a47ra.mongodb.net/EIA2-2020-2021-Endabgabe?retryWrites=true&w=majority";
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;
@@ -27,8 +27,8 @@ export namespace Firework {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        Feuerwerk = mongoClient.db("Feuerwerk").collection("Raketen");
-        console.log("Database connection", Feuerwerk != undefined);
+        fireworkCollection = mongoClient.db("Firework").collection("Rockets");
+        console.log("Database connection", fireworkCollection != undefined);
     }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
@@ -64,7 +64,7 @@ export namespace Firework {
 
     async function getTitels(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
-        let result: Mongo.Cursor<any> = Feuerwerk.find({}, { projection: { _id: 0, fireworkName: 1 } });
+        let result: Mongo.Cursor<any> = fireworkCollection.find({}, { projection: { _id: 0, fireworkName: 1 } });
         let arrayResult: string[] = await result.toArray();
         let listOfTitels: string = JSON.stringify(arrayResult);
         console.log(listOfTitels);
@@ -75,7 +75,7 @@ export namespace Firework {
 
     async function getAllDatas(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
-        let result: Mongo.Cursor<any> = Feuerwerk.find();
+        let result: Mongo.Cursor<any> = fireworkCollection.find();
       
         let arrayResult: string[] = await result.toArray();
         let jsonResult: string = JSON.stringify(arrayResult);
@@ -84,7 +84,7 @@ export namespace Firework {
     }
 
     function storeRocket(_userRocket: Rocket, _response: Http.ServerResponse): void {
-        Feuerwerk.insertOne(_userRocket);
+        fireworkCollection.insertOne(_userRocket);
         _response.end();
     }
 }
