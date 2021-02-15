@@ -65,8 +65,7 @@ var Firework;
     async function getDataFromServer(_event) {
         console.log("Datein wurden geladen");
         let target = document.getElementById("LodedTitels");
-        let userValue;
-        userValue = target.value;
+        let userValue = target.value;
         let response = await fetch(serverPage + "?" + "command=getAllDatas");
         let responseContent = await response.text();
         let allDatas = JSON.parse(responseContent);

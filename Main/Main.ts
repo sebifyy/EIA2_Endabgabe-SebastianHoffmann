@@ -70,8 +70,7 @@ namespace Firework {
   export async function getDataFromServer(_event: Event): Promise<void> {
     console.log("Datein wurden geladen");
     let target: HTMLInputElement = <HTMLInputElement>document.getElementById("LodedTitels");
-    let userValue: string;
-    userValue = target.value;
+    let userValue: string = target.value;
     let response: Response = await fetch(serverPage + "?" + "command=getAllDatas");
     let responseContent: string = await response.text();
     let allDatas: Rocket[] = JSON.parse(responseContent);
