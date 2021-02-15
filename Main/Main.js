@@ -26,7 +26,6 @@ var Firework;
             return;
         Firework.crc2 = canvas.getContext("2d");
         let fireworkSaveButton = document.querySelector("button#fireworkSaveButton");
-        //let inputParticleQuantity: HTMLButtonElement = <HTMLButtonElement>document.querySelector("input#particleQuantity");
         let fireworkLoadButton = document.querySelector("button#fireworkLoadButton");
         form = document.querySelector("form#userConfiguration");
         canvas.addEventListener("mouseup", createObject);
@@ -45,6 +44,7 @@ var Firework;
             particleLifetime = Number(formData.get("particleLifetime"));
             color = String(formData.get("particleColor"));
             luminance = String(formData.get("luminance"));
+            console.log(entry[1]);
             switch (entry[1]) {
                 case "circle":
                     type = "circle";
@@ -61,7 +61,6 @@ var Firework;
             }
         }
         createParticle(particleQuantity, particleSize, mousePositionX, mousepositionY, color, luminance, particleLifetime, type);
-        console.log(type);
     }
     async function getDataFromServer(_event) {
         console.log("Datein wurden geladen");
@@ -123,15 +122,25 @@ var Firework;
         console.log("Daten geschickt: ", responseText);
         fireworkSave.value = "";
     }
-    function createParticle(_particleQuantity, _particleSize, _mousePositionX, _mousePositionY, _color, _glowColor, _particleLifetime, _type) {
+    function createParticle(_particleQuantity, _particleSize, _mousePositionX, _mousePositionY, _color, _luminance, _particleLifetime, _type) {
         let origin = new Firework.Vector(_mousePositionX, _mousePositionY);
         let color = _color;
+        let radian = (Math.PI * 2) / _particleQuantity;
         for (let i = 0; i < _particleQuantity; i++) {
-            let radian = (Math.PI * 2) / _particleQuantity;
-            let px = Math.cos(radian * i) * 110 * Math.random() * 2;
-            let py = Math.sin(radian * i) * 110 * Math.random() * 2;
-            let velocity = new Firework.Vector(px, py);
-            let particle = new Firework.Particle(particleSize, origin, velocity, color, luminance, particleLifetime, type);
+            let px;
+            let py;
+            let velocity;
+            let particle;
+            if (i % 2 == 0) {
+                px = Math.cos(radian * i) * 150 + Math.random() * 20;
+                py = Math.sin(radian * i) * 150 + Math.random() * 20;
+            }
+            else {
+                px = Math.cos(radian * i) * 110 * Math.random() * 2;
+                py = Math.sin(radian * i) * 110 * Math.random() * 2;
+            }
+            velocity = new Firework.Vector(px, py);
+            particle = new Firework.Particle(particleSize, origin, velocity, color, luminance, particleLifetime, type);
             moveables.push(particle);
         }
     }

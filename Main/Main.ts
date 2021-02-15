@@ -27,7 +27,6 @@ namespace Firework {
       return;
     crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
     let fireworkSaveButton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#fireworkSaveButton");
-    //let inputParticleQuantity: HTMLButtonElement = <HTMLButtonElement>document.querySelector("input#particleQuantity");
     let fireworkLoadButton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#fireworkLoadButton");
     form = <HTMLFormElement>document.querySelector("form#userConfiguration");
     canvas.addEventListener("mouseup", createObject);
@@ -49,6 +48,7 @@ namespace Firework {
       particleLifetime = Number(formData.get("particleLifetime"));
       color = String(formData.get("particleColor"));
       luminance = String(formData.get("luminance"));
+      console.log(entry[1]);
       switch (entry[1]) {
         case "circle":
           type = "circle";
@@ -65,7 +65,6 @@ namespace Firework {
       }
     }
     createParticle(particleQuantity, particleSize, mousePositionX, mousepositionY, color, luminance, particleLifetime, type);
-    console.log(type);
   }
 
   export async function getDataFromServer(_event: Event): Promise<void> {
@@ -132,15 +131,25 @@ namespace Firework {
     fireworkSave.value = "";
   }
 
-  function createParticle(_particleQuantity: number, _particleSize: number, _mousePositionX: number, _mousePositionY: number, _color: string, _glowColor: string, _particleLifetime: number, _type: string): void {
+  function createParticle(_particleQuantity: number, _particleSize: number, _mousePositionX: number, _mousePositionY: number, _color: string, _luminance: string, _particleLifetime: number, _type: string): void {
     let origin: Vector = new Vector(_mousePositionX, _mousePositionY);
     let color: string = _color;
+    let radian: number = (Math.PI * 2) / _particleQuantity;
     for (let i: number = 0; i < _particleQuantity; i++) {
-      let radian: number = (Math.PI * 2) / _particleQuantity;
-      let px: number = Math.cos(radian * i) * 110 * Math.random() * 2;
-      let py: number = Math.sin(radian * i) * 110 * Math.random() * 2;
-      let velocity: Vector = new Vector(px, py);
-      let particle: MoveableObject = new Particle(particleSize, origin, velocity, color, luminance, particleLifetime, type);
+      let px: number;
+      let py: number;
+      let velocity: Vector;
+      let particle: MoveableObject;
+      if (i % 2 == 0) {
+        px = Math.cos(radian * i) * 150 + Math.random() * 20;
+        py = Math.sin(radian * i) * 150 + Math.random() * 20;
+      }
+      else {
+        px = Math.cos(radian * i) * 110 * Math.random() * 2;
+        py = Math.sin(radian * i) * 110 * Math.random() * 2;
+      }
+      velocity = new Vector(px, py);
+      particle = new Particle(particleSize, origin, velocity, color, luminance, particleLifetime, type);
       moveables.push(particle);
     }
   }
