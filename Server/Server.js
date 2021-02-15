@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var Firework;
 (function (Firework) {
     let fireworkCollection;
-    let databaseUrl = "mongodb+srv://sebify:asdf@cluster0.21tky.mongodb.net/Feuerwerk?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://sebify:asdf@cluster0.21tky.mongodb.net/Cluster0?retryWrites=true&w=majority";
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
