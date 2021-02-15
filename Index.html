@@ -1,74 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Stylesheet.css" type="text/css" media="screen" />
+    <script src="./Main/Main.js" defer></script>
     <script src="./MoveableObject/MoveableObject.js"></script>
     <script src="./Particle/Particle.js"></script>
-    <script src="./Main/Main.js"></script>
     <script src="./GenerateContent/generateContent.js"></script>
     <script src="./Vector/Vector.js"></script>
-
     <title>Feuerwerk</title>
 </head>
 
-
 <body>
+
     <div id="settings">
-    <form id="userConfiguration" method="GET">
-        <h1 class="noselect">FEUERWERK KONFIGURATOR</h1>
-        <fieldset>
-            <legend class="noselect"> PARTIKEL ANZAHL </legend>
-            <input type="range" name="particleAmount" min="1" max="50" step="1" value="10" id="particleAmount" />
-        </fieldset>
+        <form id="userConfiguration" method="GET">
+            <h1>Feuerwerksmaschine</h1>
+            <fieldset>
+                <legend> Partikelanzahl </legend>
+                <input type="range" name="particleQuantity" min="1" max="100" step="1" value="50"
+                    id="particleQuantity" />
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> FEUERWERK GRÖSSE </legend>
-            <input type="range" name="particleSize" min="40" max="100" step="1" value="1" id="particleSize" />
-        </fieldset>
+            <fieldset>
+                <legend> Partikelgröße </legend>
+                <input type="range" name="particleSize" min="40" max="100" step="1" value="70" id="particleSize" />
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> FEUERWERK LEUCHTDAUER </legend>
-            <input type="range" name="particleLifetime" min="1" max="5" step="0.5" value="2.5" id="particleLifetime" />
-        </fieldset>
+            <fieldset>
+                <legend> Leuchtdauer </legend>
+                <input type="range" name="particleLifetime" min="1" max="5" step="0.5" value="3"
+                    id="particleLifetime" />
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> PARTIKEL FORM </legend>
-            <input type="radio" name="particleShape" value="dot" id="radio1" checked="checked" />
-            <label for="radio1" class="noselect">Kreis</label>
-            <input type="radio" name="particleShape" value="triangle" id="radio2" />
-            <label for="radio2" class="noselect">Dreieck</label>
-            <input type="radio" name="particleShape" value="square" id="radio3" />
-            <label for="radio3" class="noselect">Quadrat</label>
-            <input type="radio" name="particleShape" value="gme" id="radio4" />
-            <label for="radio4" class="noselect">$GME GO BRRR</label>
-        </fieldset>
+            <fieldset>
+                <legend> Form </legend>
+                <input type="radio" name="particleShape" value="circle" id="radio1" checked="checked"
+                    id="particleShape" />
+                <label for="radio1">Kreis</label>
+                <input type="radio" name="particleShape" value="triangle" id="radio2" id="particleShape" />
+                <label for="radio2">Dreieck</label>
+                <input type="radio" name="particleShape" value="square" id="radio3" id="particleShape" />
+                <label for="radio3">Quadrat</label>
+                <input type="radio" name="particleShape" value="gme" id="radio4" id="particleShape" />
+                <label for="radio4">$GME GO BRRR</label>
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> PARTIKEL FARBE </legend>
-            <input type="color" name="particleColor" id="particleColor" value="#FFFFFF">
-        </fieldset>
+            <fieldset>
+                <legend> Partikelfarbe </legend>
+                <input type="color" name="particleColor" id="particleColor" value="#ffffff">
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> LEUCHT FARBE </legend>
-            <input type="color" name="glowColor" id="glowColor" value="#8AFFE2">
-        </fieldset>
+            <fieldset>
+                <legend> Leuchtfarbe </legend>
+                <input type="color" name="glowColor" id="glowColor" value="#b143bf">
+            </fieldset>
 
-        <fieldset>
-            <legend class="noselect"> FEUERWERK SPEICHERN </legend>
-            <input id="fireworkSave" type="text" name="fireworkName" placeholder="Name" required />
-            <button type="button" id="fireworkSaveButton" form="userConfiguration">RAKETE SPEICHERN</button>
-        </fieldset>
+            <fieldset>
+                <legend>Feuerwerk Speichern</legend>
+                <input id="fireworkSave" type="text" name="fireworkName" placeholder="Name" required />
+                <button type="button" id="fireworkSaveButton" form="userConfiguration">Speichern</button>
+            </fieldset>
 
-        <fieldset id="fireworkLoad">
-            <legend class="noselect">RAKETE LADEN</legend>
-            <button type="button" id="fireworkLoadButton">Laden</button>
-        </fieldset>
-    </form>
-</div>
-<canvas width="1280" height="720"></canvas>
+            <fieldset id="fireworkLoad">
+                <legend>Feuerwerk Laden</legend>
+                <button type="button" id="fireworkLoadButton">Laden</button>
+            </fieldset>
+        </form>
+    </div>
 
+    <canvas width="1280" height="720"></canvas>
 </body>
+
 </html>
