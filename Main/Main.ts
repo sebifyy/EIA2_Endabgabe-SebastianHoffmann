@@ -1,8 +1,8 @@
 namespace Firework {
   window.addEventListener("load", handleLoad);
-  // let serverPage: string = "http://localhost:5001";
-  //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; JOHANNES SERVER
-  let serverPage: string = "eia2-endabgabe-sh.herokuapp.com/";
+  //let serverPage: string = "http://localhost:5001";
+  let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; //JOHANNES SERVER
+  //let serverPage: string = "eia2-endabgabe-sh.herokuapp.com/";
   let form: HTMLFormElement;
   let particleQuantity: number;
   let particleSize: number;

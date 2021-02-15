@@ -2,9 +2,9 @@
 var Firework;
 (function (Firework) {
     window.addEventListener("load", handleLoad);
-    // let serverPage: string = "http://localhost:5001";
-    //let serverPage: string = "https://eia2-2020-2021.herokuapp.com/"; JOHANNES SERVER
-    let serverPage = "eia2-endabgabe-sh.herokuapp.com/";
+    //let serverPage: string = "http://localhost:5001";
+    let serverPage = "https://eia2-2020-2021.herokuapp.com/"; //JOHANNES SERVER
+    //let serverPage: string = "eia2-endabgabe-sh.herokuapp.com/";
     let form;
     let particleQuantity;
     let particleSize;
