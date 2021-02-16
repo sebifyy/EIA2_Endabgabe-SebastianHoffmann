@@ -59,7 +59,6 @@ export namespace Firework {
             return;
         }
         _response.end();
-
     }
 
     async function getTitels(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
@@ -70,7 +69,6 @@ export namespace Firework {
         console.log(listOfTitels);
         _response.write(listOfTitels);
         _response.end();
-
     }
 
     async function getAllDatas(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
