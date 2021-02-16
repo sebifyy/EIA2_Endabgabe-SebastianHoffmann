@@ -81,30 +81,30 @@ var Firework;
         console.log(color, particleLifetime, type);
         let form = document.getElementsByTagName("form");
         for (let i = 0; i < form[0].elements.length; i++) {
-            if (form[0].elements[i].id == "particleQuantity") {
-                let particleQuantity = document.getElementById("particleQuantity");
-                particleQuantity.value = color;
-            }
-            if (form[0].elements[i].id == "particleSize") {
-                let particleSize = document.getElementById("particleSize");
-                particleSize.value = color;
-            }
-            if (form[0].elements[i].id == "particleLifetime") {
-                let particleLifetime = document.getElementById("particleLifetime");
-                particleLifetime.value = color;
-            }
-            if (form[0].elements[i].id == "particleShape") {
-                let particleShape = document.getElementById("particleShape");
-                particleShape.value = color;
-            }
+            // if (form[0].elements[i].id == "particleQuantity") {
+            //   let particleQuantity: HTMLInputElement = <HTMLInputElement>document.getElementById("particleQuantity");
+            //   particleQuantity.value = <string>color;
+            // }
+            // if (form[0].elements[i].id == "particleSize") {
+            //   let particleSize: HTMLInputElement = <HTMLInputElement>document.getElementById("particleSize");
+            //   particleSize.value = <string>color;
+            // }
+            // if (form[0].elements[i].id == "particleLifetime") {
+            //   let particleLifetime: HTMLInputElement = <HTMLInputElement>document.getElementById("particleLifetime");
+            //   particleLifetime.value = <string>color;
+            // }
+            // if (form[0].elements[i].id == "particleShape") {
+            //   let particleShape: HTMLInputElement = <HTMLInputElement>document.getElementById("particleShape");
+            //   particleShape.value = <string>color;
+            // }
             if (form[0].elements[i].id == "particleColor") {
                 let particleColor = document.getElementById("particleColor");
                 particleColor.value = color;
             }
-            if (form[0].elements[i].id == "luminance") {
-                let luminance = document.getElementById("luminance");
-                luminance.value = color;
-            }
+            // if (form[0].elements[i].id == "luminance") {
+            //   let luminance: HTMLInputElement = <HTMLInputElement>document.getElementById("luminance");
+            //   luminance.value = <string>color;
+            // }
         }
     }
     async function sendDataToServer(_event) {
