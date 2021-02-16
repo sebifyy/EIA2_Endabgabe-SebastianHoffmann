@@ -6,11 +6,11 @@ var Firework;
     let audioGME = new Audio();
     audioGME.src = "./audio/wsb_discord.mp3";
     class Particle extends Firework.MoveableObject {
-        constructor(_particleSize, _position, _velocity, _color, _glowColor, _particleLifetime, _type) {
+        constructor(_particleSize, _position, _velocity, _color, _luminance, _particleLifetime, _type) {
             super(_position);
             this.particleSize = _particleSize * Math.random();
             this.color = _color;
-            this.luminance = _glowColor;
+            this.luminance = _luminance;
             this.velocity = _velocity.copy();
             this.particleLifetime = _particleLifetime + Math.random();
             this.type = _type;

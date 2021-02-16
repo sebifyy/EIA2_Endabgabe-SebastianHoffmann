@@ -110,11 +110,9 @@ var Firework;
     async function sendDataToServer(_event) {
         let userConfigurationData = new FormData(form);
         let fireworkSave = document.querySelector("input#fireworkSave");
-        let fireworkName;
-        fireworkName = fireworkSave.value;
+        let fireworkName = fireworkSave.value;
         let query = new URLSearchParams(userConfigurationData);
         console.log(fireworkName);
-        // query.append("fireworkName", fireworkName);
         let response = await fetch(serverPage + "?" + query.toString());
         let responseText = await response.text();
         alert("Deine Daten wurden gespeichert");

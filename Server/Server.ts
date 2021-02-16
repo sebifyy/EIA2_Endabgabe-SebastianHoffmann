@@ -10,7 +10,6 @@ export namespace Firework {
 
     let fireworkCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://sebify:asdf@cluster0.21tky.mongodb.net/Cluster0?retryWrites=true&w=majority";
-    //let databaseUrl: string = "mongodb+srv://DerPapa:asdfyxcv@eia2-2020-2021-endabgab.a47ra.mongodb.net/EIA2-2020-2021-Endabgabe?retryWrites=true&w=majority";
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;

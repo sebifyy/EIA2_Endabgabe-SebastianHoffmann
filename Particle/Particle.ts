@@ -16,11 +16,11 @@ namespace Firework {
         private luminance: string;
         private particleSize: number;
 
-        constructor(_particleSize: number, _position: Vector, _velocity: Vector, _color: string, _glowColor: string, _particleLifetime: number, _type: string) {
+        constructor(_particleSize: number, _position: Vector, _velocity: Vector, _color: string, _luminance: string, _particleLifetime: number, _type: string) {
             super(_position);
             this.particleSize = _particleSize * Math.random();
             this.color = _color;
-            this.luminance = _glowColor;
+            this.luminance = _luminance;
             this.velocity = _velocity.copy();
             this.particleLifetime = _particleLifetime + Math.random();
             this.type = _type;

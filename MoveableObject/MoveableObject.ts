@@ -18,7 +18,6 @@ namespace Firework {
             offset.scale(_timeslice);
             this.position.add(offset);
         }
-
         public abstract draw(): void;   
     }
 }

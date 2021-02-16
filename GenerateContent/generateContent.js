@@ -13,7 +13,6 @@ var Firework;
         let selection = document.createElement("select");
         selection.name = "LoadedTitels";
         selection.id = "LodedTitels";
-        // selection.addEventListener("change", getDataFromServer);
         for (let titel of _titelList) {
             let option = document.createElement("option");
             option.setAttribute("name", titel.fireworkName);

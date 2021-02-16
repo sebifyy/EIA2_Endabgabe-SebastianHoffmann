@@ -118,11 +118,9 @@ namespace Firework {
   async function sendDataToServer(_event: Event): Promise<void> {
     let userConfigurationData: FormData = new FormData(form);
     let fireworkSave: HTMLInputElement = <HTMLInputElement>document.querySelector("input#fireworkSave");
-    let fireworkName: string;
-    fireworkName = fireworkSave.value;
+    let fireworkName: string = fireworkSave.value;
     let query: URLSearchParams = new URLSearchParams(<any>userConfigurationData);
     console.log(fireworkName);
-    // query.append("fireworkName", fireworkName);
     let response: Response = await fetch(serverPage + "?" + query.toString());
     let responseText: string = await response.text();
     alert("Deine Daten wurden gespeichert");
